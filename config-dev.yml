@@ -1,0 +1,11 @@
+name: patient-go
+mysql: root:root@tcp(127.0.0.1:3306)/patient?charset=utf8&parseTime=true&loc=Asia%2FShanghai
+port: 8089
+logsPath: "/tmp/logs/patient/"
+
+minio:
+  endpoint: "127.0.0.1:9000"
+  accessKeyID: "admin"
+  secretAccessKey: "admin"
+  bucketName: "picture"
+  path: "https://winterchen.com/share/"
