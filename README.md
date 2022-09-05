@@ -103,7 +103,6 @@ docker run -d -p 8098:8098 --name patient-go patient-go
 
 the first you need to build the docker image, because the docker-compose.yml use the image.
 
-```bash
 
 ```bash
 docker build -t patient-go .
