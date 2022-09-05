@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"winterchen.com/patient-go/patient/global"
 	"go.uber.org/zap"
 )
 
@@ -19,7 +20,7 @@ func LoggerForGin() gin.HandlerFunc {
 		status := c.Writer.Status()
 		clientIP := c.ClientIP()
 		method := c.Request.Method
-		zap.L().Info("access log",
+		global.Log.Info("access log",
 			zap.Int("status", status),
 			zap.String("latency", latency.String()),
 			zap.String("clientIP", clientIP),

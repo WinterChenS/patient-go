@@ -1,11 +1,10 @@
 package helpers
 
 import (
-	"fmt"
 	"io"
 
 	"winterchen.com/patient-go/patient/global"
-
+	"go.uber.org/zap"
 	"github.com/minio/minio-go"
 	"github.com/minio/minio-go/v6/pkg/policy"
 )
@@ -17,11 +16,10 @@ func CreateMinoBuket(bucketName string) {
 	if err != nil {
 		// check bucket exists
 		exists, err := global.MinioClient.BucketExists(bucketName)
-		fmt.Println(exists)
 		if err == nil && exists {
-			fmt.Printf("We already own %s\n", bucketName)
+			global.Log.Info("We already own " + bucketName)
 		} else {
-			fmt.Println(err, exists)
+			global.Log.Error(err.Error())
 			return
 		}
 	}
@@ -29,34 +27,24 @@ func CreateMinoBuket(bucketName string) {
 	err = global.MinioClient.SetBucketPolicy(bucketName, policy.BucketPolicyReadWrite)
 
 	if err != nil {
-		fmt.Println(err)
+		global.Log.Error(err.Error())
 		return
 	}
-	fmt.Printf("Successfully created %s\n", bucketName)
+	global.Log.Info("Successfully created " + bucketName)
 }
 
 // upload file
 func UploadFile(bucketName, objectName string, reader io.Reader, objectSize int64) (ok bool) {
 	n, err := global.MinioClient.PutObject(bucketName, objectName, reader, objectSize, minio.PutObjectOptions{ContentType: "application/octet-stream"})
 	if err != nil {
-		fmt.Println(err)
+		global.Log.Error(err.Error())
 		return false
 	}
-	fmt.Println("Successfully uploaded bytes: ", n)
+	global.Log.Info("Successfully uploaded bytes: ", zap.Any("n", n))
 	return true
 }
 
 //  get file url
 func GetFileUrl(bucketName string, fileName string) string {
-
-	// reqParams := make(url.Values)
-	// presignedURL, err := global.MinioClient.PresignedGetObject(bucketName, fileName, expires, reqParams)
-	// if err != nil {
-	// 	zap.L().Error(err.Error())
-	// 	return ""
-	// }
-	// return fmt.Sprintf("%s", presignedURL)
-	// return strings.Replace(fmt.Sprintf("%s", presignedURL), "http://"+global.Configs.Minio.Endpoint, global.Configs.Minio.Path, 1)
-
 	return "http://" + global.Configs.Minio.Endpoint + "/" + bucketName + "/" + fileName
 }

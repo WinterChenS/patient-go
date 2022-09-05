@@ -3,7 +3,7 @@
  * @Author: winterchen
  * @Description: TODO
  * @Version: 1.0
- * @LastEditTime: 2022-09-03 20:07:19
+ * @LastEditTime: 2022-09-05 13:40:29
  */
 package main
 
@@ -55,7 +55,7 @@ func main() {
 	// start server
 	err := Router.Run(fmt.Sprintf(":%d", global.Configs.Port))
 	if err != nil {
-		zap.L().Info("the patient-go ", zap.String("error", "run failed"))
+		global.Log.Info("the patient-go ", zap.String("error", "run failed"))
 	}
 
 }
