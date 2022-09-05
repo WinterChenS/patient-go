@@ -22,7 +22,7 @@ WORKDIR /dist
 
 RUN cp /build/app .
 
-COPY ./config-dev.yml /conf/config-dev.yml
+COPY ./config-dev.yml .
 
 
 EXPOSE 8098
