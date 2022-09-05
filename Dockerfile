@@ -27,4 +27,4 @@ COPY ./config-dev.yml .
 
 EXPOSE 8098
 
-CMD ["/dist/app", "conf/config-dev.yml"]
+CMD ["/dist/app"]
