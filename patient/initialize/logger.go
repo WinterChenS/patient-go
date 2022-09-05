@@ -17,7 +17,10 @@ func InitLogger() {
 		"stdout",
 	}
 	// create logger
-	logger, _ := cfg.Build()
+	logger, err := cfg.Build(zap.AddCallerSkip(1))
+	if err != nil {
+		panic(err)
+	}
 	zap.ReplaceGlobals(logger)
 	// set global logger
 	global.Log = logger
