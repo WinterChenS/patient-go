@@ -12,6 +12,7 @@ WORKDIR /build
 
 COPY . .
 
+RUN go env -w  GOPROXY=https://goproxy.cn,direct
 
 RUN go build -o app .
 
