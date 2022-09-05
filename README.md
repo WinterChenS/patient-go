@@ -18,9 +18,10 @@ visit the font-end [repo](https://github.com/WinterChenS/patient.git)
 # Quick Start
 
 ## Prerequisites
-Golang: 1.16.0 or later
-Mysql: 8.0 or later
-Minio: 2022-01-04T07:41:07Z or later
+
+- Golang: 1.16.0 or later
+- Mysql: 8.0 or later
+- Minio: 2022-01-04T07:41:07Z or later
 
 
 
