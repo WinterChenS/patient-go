@@ -1,6 +1,9 @@
 # patient-go
 
 ## Overview
+
+[![CI](https://github.com/WinterChenS/patient-go/actions/workflows/main.yml/badge.svg)](https://github.com/WinterChenS/patient-go/actions/workflows/main.yml)
+
 this is a simple patient management system. It is a simple application that allows you to create, read patients.
 
 visit the [demo](http://winterchen.com:3002)
