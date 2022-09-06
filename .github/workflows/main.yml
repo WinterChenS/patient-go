@@ -39,6 +39,6 @@ jobs:
           # connection timeout to remote host
           connect_timeout: 180s # optional, default is 30s
           # execute commands on ssh
-          script: cd /root/workspace/app/patient-go/ && git pull && docker build . -t patient-go && cd /root/workspace/docker/patient-go/ && docker-compose down && docker-compose up -d
+          script: cd /root/workspace/shell/ && ./deploy_patient_go.sh
 
       
