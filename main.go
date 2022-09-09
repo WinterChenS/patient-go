@@ -3,7 +3,7 @@
  * @Author: winterchen
  * @Description: TODO
  * @Version: 1.0
- * @LastEditTime: 2022-09-05 13:40:29
+ * @LastEditTime: 2022-09-09 11:23:41
  */
 package main
 
@@ -23,11 +23,11 @@ func main() {
 	// init config
 	initialize.InitConfig()
 
-	// init routers
-	Router := initialize.Routers()
-
 	// init logger
 	initialize.InitLogger()
+
+	// init routers
+	Router := initialize.Routers()
 
 	// init db
 	initialize.InitDB()
@@ -36,13 +36,9 @@ func main() {
 	initialize.InitMinIO()
 
 	// init snowflake
-	if err := initialize.InitSnowflake(time.Now(), 1); err != nil {
-		panic(err)
-	}
+	initialize.InitSnowflake(time.Now(), 1)
 
-	if err := initialize.InitTrans("en"); err != nil {
-		panic(err)
-	}
+	initialize.InitTrans("en")
 
 	color.Cyan("patient-go is running")
 

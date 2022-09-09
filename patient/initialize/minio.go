@@ -1,8 +1,6 @@
 package initialize
 
 import (
-	"log"
-
 	"winterchen.com/patient-go/patient/global"
 	"winterchen.com/patient-go/patient/helpers"
 
@@ -15,7 +13,8 @@ func InitMinIO() {
 	// init minio client object.
 	minioClient, err := minio.New(minioInfo.Endpoint, minioInfo.AccessKeyID, minioInfo.SecretAccessKey, false)
 	if err != nil {
-		log.Fatalln(err)
+		global.Log.Error(err.Error())
+		panic(err)
 	}
 	// set global minio client object.
 	global.MinioClient = minioClient

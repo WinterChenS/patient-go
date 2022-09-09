@@ -18,7 +18,7 @@ import (
 )
 
 // init translation
-func InitTrans(locale string) (err error) {
+func InitTrans(locale string) {
 	color.Red("start translation")
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
@@ -36,7 +36,7 @@ func InitTrans(locale string) (err error) {
 		uni := ut.New(enT, zhT, enT)
 		global.Trans, ok = uni.GetTranslator(locale)
 		if !ok {
-			return fmt.Errorf("uni.GetTranslator(%s)", locale)
+			panic(fmt.Errorf("uni.GetTranslator(%s)", locale))
 		}
 
 		switch locale {

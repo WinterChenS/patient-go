@@ -6,10 +6,12 @@ import (
 	"winterchen.com/patient-go/patient/global"
 )
 
-func InitDB() error {
+func InitDB() {
 	db, err := gorm.Open("mysql", global.Configs.Mysql)
-	if err == nil {
-		global.DB = db
+	if err != nil {
+		global.Log.Error(err.Error())
+		panic(err)
 	}
-	return err
+	global.DB = db
+	return
 }

@@ -10,5 +10,8 @@ import (
 func InitSnowflake(startTime time.Time, machineID int64) (err error) {
 	sf.Epoch = startTime.UnixNano() / 1000000
 	global.Snowflake, err = sf.NewNode(machineID)
+	if err != nil {
+		panic(err)
+	}
 	return
 }
