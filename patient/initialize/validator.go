@@ -50,5 +50,4 @@ func InitTrans(locale string) {
 
 		return
 	}
-	return
 }
